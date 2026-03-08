@@ -17,13 +17,23 @@ font-family:'Poppins',sans-serif;
 color:white;
 height:100vh;
 overflow:hidden;
-background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-animation:bgMove 12s infinite alternate;
+background:linear-gradient(120deg,#0f2027,#203a43,#2c5364);
 }
 
-@keyframes bgMove{
-0%{filter:hue-rotate(0deg)}
-100%{filter:hue-rotate(30deg)}
+/* STARS BACKGROUND */
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+opacity:.6;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:.2}
+to{opacity:1}
 }
 
 /* MAIN CARD */
@@ -38,21 +48,27 @@ padding:50px;
 border-radius:25px;
 background:rgba(255,255,255,0.08);
 backdrop-filter:blur(20px);
-box-shadow:0 30px 80px rgba(0,0,0,0.6);
+box-shadow:0 30px 80px rgba(0,0,0,0.7);
 width:90%;
 max-width:650px;
+animation:glow 6s infinite alternate;
+}
+
+@keyframes glow{
+from{box-shadow:0 30px 80px rgba(0,0,0,0.7)}
+to{box-shadow:0 30px 120px rgba(255,255,255,0.2)}
 }
 
 /* TEXT */
 
 h1{
 font-family:'Playfair Display',serif;
-font-size:38px;
+font-size:36px;
 margin-bottom:10px;
 }
 
 .subtitle{
-opacity:.8;
+opacity:.85;
 margin-bottom:30px;
 font-size:15px;
 }
@@ -84,17 +100,34 @@ font-size:12px;
 opacity:.8;
 }
 
+/* ENVELOPE */
+
+.envelope{
+display:none;
+margin-top:25px;
+cursor:pointer;
+font-size:18px;
+background:rgba(255,255,255,0.15);
+padding:12px 20px;
+border-radius:25px;
+transition:.4s;
+}
+
+.envelope:hover{
+background:rgba(255,255,255,0.25);
+}
+
 /* LETTER */
 
 #letter{
 display:none;
-margin-top:20px;
-font-size:16px;
+margin-top:25px;
 line-height:1.8;
+font-size:16px;
 white-space:pre-line;
 }
 
-/* ADMIRATION SECTION */
+/* ADMIRE */
 
 #admire{
 display:none;
@@ -115,6 +148,20 @@ border-radius:12px;
 font-size:14px;
 }
 
+/* CAKE */
+
+.cake{
+display:none;
+font-size:50px;
+margin-top:20px;
+animation:bounce 1.2s infinite;
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+}
+
 /* MUSIC BUTTON */
 
 .music{
@@ -129,23 +176,6 @@ color:white;
 cursor:pointer;
 }
 
-/* FLOATING PARTICLES */
-
-.particle{
-position:absolute;
-width:5px;
-height:5px;
-background:white;
-border-radius:50%;
-opacity:.4;
-animation:float 12s linear infinite;
-}
-
-@keyframes float{
-from{transform:translateY(100vh)}
-to{transform:translateY(-10vh)}
-}
-
 </style>
 </head>
 
@@ -155,9 +185,11 @@ to{transform:translateY(-10vh)}
 
 <div class="container">
 
-<h1>Anuradha, tumar b'day er countdown</h1>
+<h1>Anuradha</h1>
+
 <div class="subtitle">
-For the nurse who spends her days caring for others — today is for you.
+For the nurse who spends her days healing others —  
+today the world celebrates you.
 </div>
 
 <div class="countdown">
@@ -184,6 +216,12 @@ For the nurse who spends her days caring for others — today is for you.
 
 </div>
 
+<div class="cake" id="cake">🎂</div>
+
+<div class="envelope" id="openLetter" onclick="openLetter()">
+💌 Open Birthday Letter
+</div>
+
 <div id="letter"></div>
 
 <div id="admire">
@@ -203,7 +241,7 @@ Your strength even on difficult days.
 </div>
 
 <div class="card">
-Your ability to make people feel safe.
+Your calm presence in chaotic moments.
 </div>
 
 <div class="card">
@@ -222,9 +260,20 @@ The genuine heart you carry everywhere.
 
 <script>
 
-/* BIRTHDAY DATE */
+/* STARS */
 
-const birthday=new Date("March 09, 2026 02:38:00").getTime()
+for(let i=0;i<120;i++){
+let star=document.createElement("div")
+star.className="star"
+star.style.left=Math.random()*100+"vw"
+star.style.top=Math.random()*100+"vh"
+star.style.animationDuration=1+Math.random()*3+"s"
+document.body.appendChild(star)
+}
+
+/* BIRTHDAY */
+
+const birthday=new Date("June 12, 2026 00:00:00").getTime()
 
 const message=`Happy Birthday ❤️
 
@@ -257,9 +306,7 @@ and success in everything you dream of.
 
 The world is lucky to have you.
 
-And I'm lucky to know you.
-
-Happy Birthday.`
+And I'm lucky to know you.`
 
 function update(){
 
@@ -270,13 +317,11 @@ if(dist<=0){
 
 document.querySelector(".countdown").style.display="none"
 
-typeWriter()
+document.getElementById("cake").style.display="block"
+
+document.getElementById("openLetter").style.display="inline-block"
 
 confetti()
-
-setTimeout(()=>{
-document.getElementById("admire").style.display="block"
-},8000)
 
 return
 }
@@ -286,14 +331,28 @@ const h=Math.floor((dist%(1000*60*60*24))/(1000*60*60))
 const m=Math.floor((dist%(1000*60*60))/(1000*60))
 const s=Math.floor((dist%(1000*60))/1000)
 
-document.getElementById("days").innerHTML=d
-document.getElementById("hours").innerHTML=h
-document.getElementById("minutes").innerHTML=m
-document.getElementById("seconds").innerHTML=s
+document.getElementById("days").innerHTML=String(d).padStart(2,'0')
+document.getElementById("hours").innerHTML=String(h).padStart(2,'0')
+document.getElementById("minutes").innerHTML=String(m).padStart(2,'0')
+document.getElementById("seconds").innerHTML=String(s).padStart(2,'0')
 
 }
 
 setInterval(update,1000)
+
+/* OPEN LETTER */
+
+function openLetter(){
+
+document.getElementById("letter").style.display="block"
+
+typeWriter()
+
+setTimeout(()=>{
+document.getElementById("admire").style.display="block"
+},8000)
+
+}
 
 /* TYPEWRITER */
 
@@ -302,16 +361,12 @@ function typeWriter(){
 let i=0
 const letter=document.getElementById("letter")
 
-letter.style.display="block"
-
 function typing(){
-
 if(i<message.length){
 letter.innerHTML+=message.charAt(i)
 i++
 setTimeout(typing,35)
 }
-
 }
 
 typing()
@@ -351,20 +406,6 @@ c.style.top="100vh"
 },50)
 
 }
-
-}
-
-/* PARTICLES */
-
-for(let i=0;i<35;i++){
-
-let p=document.createElement("div")
-p.className="particle"
-
-p.style.left=Math.random()*100+"vw"
-p.style.animationDuration=10+Math.random()*10+"s"
-
-document.body.appendChild(p)
 
 }
 
