@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>12 June ♊</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+height:100vh;
+overflow:hidden;
+font-family:'Inter',sans-serif;
+color:white;
+background:black;
+transition:3s;
+}
+
+/* BACKGROUND PHOTO */
+
+.bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:url('her1.jpg') center/cover no-repeat;
+filter:brightness(0.4);
+animation:fadeBg 3s ease forwards;
+}
+
+@keyframes fadeBg{
+from{opacity:0}
+to{opacity:1}
+}
+
+/* GOLDEN TRANSITION */
+
+.golden{
+background:linear-gradient(120deg,#2b1a00,#8c6a2b,#2b1a00);
+}
+
+/* GLASS CARD */
+
+.container{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+text-align:center;
+padding:50px;
+border-radius:25px;
+background:rgba(255,255,255,0.08);
+backdrop-filter:blur(20px);
+box-shadow:0 25px 70px rgba(0,0,0,0.5);
+width:90%;
+max-width:600px;
+}
+
+h1{
+font-family:'Playfair Display',serif;
+font-size:34px;
+margin-bottom:10px;
+}
+
+.subtitle{
+opacity:.8;
+margin-bottom:30px;
+}
+
+/* COUNTDOWN */
+
+.countdown{
+display:flex;
+gap:15px;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+.time{
+background:rgba(255,255,255,0.15);
+padding:15px;
+border-radius:15px;
+min-width:80px;
+}
+
+.time span{
+font-size:26px;
+font-weight:600;
+}
+
+.label{
+font-size:11px;
+opacity:.8;
+}
+
+/* LETTER */
+
+#letter{
+display:none;
+margin-top:20px;
+font-size:16px;
+line-height:1.8;
+}
+
+/* SLIDESHOW */
+
+#slideshow{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:0;
+animation:slideShow 16s infinite;
+}
+
+.slide:nth-child(1){animation-delay:0s}
+.slide:nth-child(2){animation-delay:4s}
+.slide:nth-child(3){animation-delay:8s}
+.slide:nth-child(4){animation-delay:12s}
+
+@keyframes slideShow{
+0%{opacity:0}
+10%{opacity:1}
+30%{opacity:1}
+40%{opacity:0}
+100%{opacity:0}
+}
+
+/* MUSIC BUTTON */
+
+.music{
+position:fixed;
+top:20px;
+right:20px;
+background:rgba(255,255,255,0.2);
+border:none;
+padding:10px 15px;
+border-radius:20px;
+color:white;
+cursor:pointer;
+}
+
+/* PARTICLES */
+
+.particle{
+position:absolute;
+width:6px;
+height:6px;
+background:white;
+border-radius:50%;
+opacity:.3;
+animation:float 15s linear infinite;
+}
+
+@keyframes float{
+from{transform:translateY(100vh)}
+to{transform:translateY(-10vh)}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+
+<button class="music" onclick="toggleMusic()">🎵</button>
+
+<div class="container">
+
+<h1>12 June 2026</h1>
+<div class="subtitle">Counting down to her moment ♊</div>
+
+<div class="countdown">
+
+<div class="time">
+<span id="days">00</span>
+<div class="label">Days</div>
+</div>
+
+<div class="time">
+<span id="hours">00</span>
+<div class="label">Hours</div>
+</div>
+
+<div class="time">
+<span id="minutes">00</span>
+<div class="label">Minutes</div>
+</div>
+
+<div class="time">
+<span id="seconds">00</span>
+<div class="label">Seconds</div>
+</div>
+
+</div>
+
+<div id="letter"></div>
+
+</div>
+
+<!-- SLIDESHOW -->
+
+<div id="slideshow">
+<img class="slide" src="her1.jpg">
+<img class="slide" src="her2.jpg">
+<img class="slide" src="her3.jpg">
+<img class="slide" src="her4.jpg">
+</div>
+
+<audio id="music" loop>
+<source src="music.mp3">
+</audio>
+
+<script>
+
+/* COUNTDOWN */
+
+const birthday=new Date("June 12, 2026 00:00:00").getTime()
+const letterText=`Happy Birthday ❤️
+
+You were born on 12 June 2003.
+
+Since then the world became a little softer,
+a little kinder,
+and a little brighter.
+
+I don't just celebrate your birthday —
+I celebrate the way you exist in this world.
+
+Your smile,
+your strength,
+your quiet magic.
+
+May this year give you back
+all the love you give to everyone else.`
+
+function update(){
+
+const now=new Date().getTime()
+const dist=birthday-now
+
+if(dist<=0){
+
+document.body.classList.add("golden")
+
+document.querySelector(".countdown").style.display="none"
+
+typeWriter()
+
+confetti()
+
+setTimeout(()=>{
+document.getElementById("slideshow").style.display="block"
+},9000)
+
+return
+}
+
+const d=Math.floor(dist/(1000*60*60*24))
+const h=Math.floor((dist%(1000*60*60*24))/(1000*60*60))
+const m=Math.floor((dist%(1000*60*60))/(1000*60))
+const s=Math.floor((dist%(1000*60))/1000)
+
+document.getElementById("days").innerHTML=d
+document.getElementById("hours").innerHTML=h
+document.getElementById("minutes").innerHTML=m
+document.getElementById("seconds").innerHTML=s
+
+}
+
+setInterval(update,1000)
+
+/* TYPEWRITER */
+
+function typeWriter(){
+
+let i=0
+const speed=40
+const letter=document.getElementById("letter")
+letter.style.display="block"
+
+function typing(){
+if(i<letterText.length){
+letter.innerHTML+=letterText.charAt(i)
+i++
+setTimeout(typing,speed)
+}
+}
+
+typing()
+}
+
+/* MUSIC */
+
+const music=document.getElementById("music")
+
+function toggleMusic(){
+if(music.paused)music.play()
+else music.pause()
+}
+
+/* CONFETTI */
+
+function confetti(){
+
+for(let i=0;i<150;i++){
+
+let c=document.createElement("div")
+
+c.style.position="fixed"
+c.style.width="6px"
+c.style.height="10px"
+c.style.background=`hsl(${Math.random()*360},70%,60%)`
+c.style.left=Math.random()*100+"vw"
+c.style.top="-10px"
+c.style.opacity=Math.random()
+
+c.style.transform=`rotate(${Math.random()*360}deg)`
+c.style.transition="5s linear"
+
+document.body.appendChild(c)
+
+setTimeout(()=>{
+c.style.top="100vh"
+},50)
+
+}
+}
+
+/* FLOATING PARTICLES */
+
+for(let i=0;i<40;i++){
+
+let p=document.createElement("div")
+p.className="particle"
+
+p.style.left=Math.random()*100+"vw"
+p.style.animationDuration=10+Math.random()*10+"s"
+p.style.opacity=Math.random()*0.5
+
+document.body.appendChild(p)
+
+}
+
+</script>
+
+</body>
+</html>
