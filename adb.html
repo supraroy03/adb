@@ -3,48 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>12 June ♊</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<title>12 June</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
 *{margin:0;padding:0;box-sizing:border-box}
 
 body{
+font-family:'Poppins',sans-serif;
+color:white;
 height:100vh;
 overflow:hidden;
-font-family:'Inter',sans-serif;
-color:white;
-background:black;
-transition:3s;
+background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+animation:bgMove 12s infinite alternate;
 }
 
-/* BACKGROUND PHOTO */
-
-.bg{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:url('her1.jpg') center/cover no-repeat;
-filter:brightness(0.4);
-animation:fadeBg 3s ease forwards;
+@keyframes bgMove{
+0%{filter:hue-rotate(0deg)}
+100%{filter:hue-rotate(30deg)}
 }
 
-@keyframes fadeBg{
-from{opacity:0}
-to{opacity:1}
-}
-
-/* GOLDEN TRANSITION */
-
-.golden{
-background:linear-gradient(120deg,#2b1a00,#8c6a2b,#2b1a00);
-}
-
-/* GLASS CARD */
+/* MAIN CARD */
 
 .container{
 position:absolute;
@@ -56,29 +38,33 @@ padding:50px;
 border-radius:25px;
 background:rgba(255,255,255,0.08);
 backdrop-filter:blur(20px);
-box-shadow:0 25px 70px rgba(0,0,0,0.5);
+box-shadow:0 30px 80px rgba(0,0,0,0.6);
 width:90%;
-max-width:600px;
+max-width:650px;
 }
+
+/* TEXT */
 
 h1{
 font-family:'Playfair Display',serif;
-font-size:34px;
+font-size:38px;
 margin-bottom:10px;
 }
 
 .subtitle{
 opacity:.8;
 margin-bottom:30px;
+font-size:15px;
 }
 
 /* COUNTDOWN */
 
 .countdown{
 display:flex;
-gap:15px;
 justify-content:center;
+gap:15px;
 flex-wrap:wrap;
+margin-bottom:20px;
 }
 
 .time{
@@ -89,12 +75,12 @@ min-width:80px;
 }
 
 .time span{
-font-size:26px;
+font-size:28px;
 font-weight:600;
 }
 
 .label{
-font-size:11px;
+font-size:12px;
 opacity:.8;
 }
 
@@ -105,39 +91,28 @@ display:none;
 margin-top:20px;
 font-size:16px;
 line-height:1.8;
+white-space:pre-line;
 }
 
-/* SLIDESHOW */
+/* ADMIRATION SECTION */
 
-#slideshow{
+#admire{
 display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+margin-top:30px;
 }
 
-.slide{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-opacity:0;
-animation:slideShow 16s infinite;
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:15px;
+margin-top:15px;
 }
 
-.slide:nth-child(1){animation-delay:0s}
-.slide:nth-child(2){animation-delay:4s}
-.slide:nth-child(3){animation-delay:8s}
-.slide:nth-child(4){animation-delay:12s}
-
-@keyframes slideShow{
-0%{opacity:0}
-10%{opacity:1}
-30%{opacity:1}
-40%{opacity:0}
-100%{opacity:0}
+.card{
+background:rgba(255,255,255,0.15);
+padding:15px;
+border-radius:12px;
+font-size:14px;
 }
 
 /* MUSIC BUTTON */
@@ -148,22 +123,22 @@ top:20px;
 right:20px;
 background:rgba(255,255,255,0.2);
 border:none;
-padding:10px 15px;
+padding:10px 14px;
 border-radius:20px;
 color:white;
 cursor:pointer;
 }
 
-/* PARTICLES */
+/* FLOATING PARTICLES */
 
 .particle{
 position:absolute;
-width:6px;
-height:6px;
+width:5px;
+height:5px;
 background:white;
 border-radius:50%;
-opacity:.3;
-animation:float 15s linear infinite;
+opacity:.4;
+animation:float 12s linear infinite;
 }
 
 @keyframes float{
@@ -176,14 +151,14 @@ to{transform:translateY(-10vh)}
 
 <body>
 
-<div class="bg"></div>
-
 <button class="music" onclick="toggleMusic()">🎵</button>
 
 <div class="container">
 
-<h1>12 June 2026</h1>
-<div class="subtitle">Counting down to her moment ♊</div>
+<h1>12 June</h1>
+<div class="subtitle">
+For the nurse who spends her days caring for others — today is for you.
+</div>
 
 <div class="countdown">
 
@@ -211,15 +186,34 @@ to{transform:translateY(-10vh)}
 
 <div id="letter"></div>
 
+<div id="admire">
+
+<h2 style="margin-top:20px;font-family:'Playfair Display',serif;">
+Why I admire you
+</h2>
+
+<div class="cards">
+
+<div class="card">
+Your kindness toward people who need care.
 </div>
 
-<!-- SLIDESHOW -->
+<div class="card">
+Your strength even on difficult days.
+</div>
 
-<div id="slideshow">
-<img class="slide" src="her1.jpg">
-<img class="slide" src="her2.jpg">
-<img class="slide" src="her3.jpg">
-<img class="slide" src="her4.jpg">
+<div class="card">
+Your ability to make people feel safe.
+</div>
+
+<div class="card">
+The genuine heart you carry everywhere.
+</div>
+
+</div>
+
+</div>
+
 </div>
 
 <audio id="music" loop>
@@ -228,26 +222,44 @@ to{transform:translateY(-10vh)}
 
 <script>
 
-/* COUNTDOWN */
+/* BIRTHDAY DATE */
 
 const birthday=new Date("June 12, 2026 00:00:00").getTime()
-const letterText=`Happy Birthday ❤️
+
+const message=`Happy Birthday ❤️
 
 You were born on 12 June 2003.
 
-Since then the world became a little softer,
-a little kinder,
-and a little brighter.
+Some people choose a profession,
+but some people become a light in it.
 
-I don't just celebrate your birthday —
-I celebrate the way you exist in this world.
+You chose to care for others,
+to comfort, to heal,
+and to stand beside people
+when they need it the most.
 
-Your smile,
-your strength,
-your quiet magic.
+Being a nurse takes strength,
+patience, and a very kind heart.
 
-May this year give you back
-all the love you give to everyone else.`
+And those are things I truly admire about you.
+
+But beyond everything you do,
+I'm grateful for the person you are in my life.
+
+A friend who listens,
+understands,
+and makes ordinary days feel lighter.
+
+On your birthday,
+I simply wish you peace,
+happiness,
+and success in everything you dream of.
+
+The world is lucky to have you.
+
+And I'm lucky to know you.
+
+Happy Birthday.`
 
 function update(){
 
@@ -256,8 +268,6 @@ const dist=birthday-now
 
 if(dist<=0){
 
-document.body.classList.add("golden")
-
 document.querySelector(".countdown").style.display="none"
 
 typeWriter()
@@ -265,8 +275,8 @@ typeWriter()
 confetti()
 
 setTimeout(()=>{
-document.getElementById("slideshow").style.display="block"
-},9000)
+document.getElementById("admire").style.display="block"
+},8000)
 
 return
 }
@@ -290,19 +300,22 @@ setInterval(update,1000)
 function typeWriter(){
 
 let i=0
-const speed=40
 const letter=document.getElementById("letter")
+
 letter.style.display="block"
 
 function typing(){
-if(i<letterText.length){
-letter.innerHTML+=letterText.charAt(i)
+
+if(i<message.length){
+letter.innerHTML+=message.charAt(i)
 i++
-setTimeout(typing,speed)
+setTimeout(typing,35)
 }
+
 }
 
 typing()
+
 }
 
 /* MUSIC */
@@ -318,7 +331,7 @@ else music.pause()
 
 function confetti(){
 
-for(let i=0;i<150;i++){
+for(let i=0;i<120;i++){
 
 let c=document.createElement("div")
 
@@ -329,8 +342,6 @@ c.style.background=`hsl(${Math.random()*360},70%,60%)`
 c.style.left=Math.random()*100+"vw"
 c.style.top="-10px"
 c.style.opacity=Math.random()
-
-c.style.transform=`rotate(${Math.random()*360}deg)`
 c.style.transition="5s linear"
 
 document.body.appendChild(c)
@@ -340,18 +351,18 @@ c.style.top="100vh"
 },50)
 
 }
+
 }
 
-/* FLOATING PARTICLES */
+/* PARTICLES */
 
-for(let i=0;i<40;i++){
+for(let i=0;i<35;i++){
 
 let p=document.createElement("div")
 p.className="particle"
 
 p.style.left=Math.random()*100+"vw"
 p.style.animationDuration=10+Math.random()*10+"s"
-p.style.opacity=Math.random()*0.5
 
 document.body.appendChild(p)
 
