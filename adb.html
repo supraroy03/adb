@@ -19,7 +19,7 @@
 <!-- BACKGROUND STARS -->
 <div class="stars"></div>
 
-<!-- CONSTELLATION NAME (ALWAYS VISIBLE) -->
+<!-- CONSTELLATION NAME -->
 <div class="constellation">
 <span>A</span>
 <span>a</span>
@@ -31,7 +31,7 @@
 </div>
 
 <!-- MUSIC BUTTON -->
-<button class="music" onclick="toggleMusic()" aria-label="Toggle music">
+<button class="music" id="musicBtn" aria-label="Toggle music">
 🎵
 </button>
 
@@ -43,13 +43,14 @@
 <h1>For my Anuradha</h1>
 
 <p class="subtitle">
-For the girl whose presence brings calm, warmth, and light into the world. We are lucky to have you.
+For the girl whose presence brings calm, warmth, and light into the world.  
+We are lucky to have you.
 </p>
 
 </header>
 
 
-<!-- COUNTDOWN SECTION -->
+<!-- COUNTDOWN -->
 <section class="countdown">
 
 <div class="time">
@@ -75,7 +76,7 @@ For the girl whose presence brings calm, warmth, and light into the world. We ar
 </section>
 
 
-<!-- BIRTHDAY CAKE -->
+<!-- CAKE -->
 <section id="cake" class="cake">
 
 <div class="cake-base"></div>
@@ -109,11 +110,11 @@ A letter waiting for you…
 </section>
 
 
-<!-- CHAT STYLE LETTER -->
+<!-- CHAT LETTER -->
 <section id="letter" class="chat"></section>
 
 
-<!-- ADMIRATION SECTION -->
+<!-- ADMIRATION -->
 <section id="admire">
 
 <h2 class="admire-title">Why I admire you</h2>
@@ -163,11 +164,17 @@ Your presence makes life softer, brighter, and infinitely more meaningful.
 
 
 <!-- MUSIC -->
-<audio id="music" loop autoplay>
+<audio id="music" preload="auto" loop>
 <source src="music.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
 </audio>
 
 
+<!-- AUDIO UNLOCK (for mobile autoplay) -->
+<div id="audioUnlock"></div>
+
+
+<!-- SCRIPT -->
 <script src="script.js"></script>
 
 </body>
