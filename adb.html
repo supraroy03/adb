@@ -2,84 +2,171 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For Anuradha</title>
+<title>For Aaimoni ✨</title>
 
 <link rel="stylesheet" href="style.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
-<button class="music" onclick="toggleMusic()">🎵</button>
+<!-- BACKGROUND STARS -->
+<div class="stars"></div>
+
+<!-- CONSTELLATION NAME (ALWAYS VISIBLE) -->
+<div class="constellation">
+<span>A</span>
+<span>a</span>
+<span>i</span>
+<span>m</span>
+<span>o</span>
+<span>n</span>
+<span>i</span>
+</div>
+
+<!-- MUSIC BUTTON -->
+<button class="music" onclick="toggleMusic()" aria-label="Toggle music">
+🎵
+</button>
 
 <div class="container">
 
-<h1>For Anuradha</h1>
+<!-- HEADER -->
+<header class="hero">
 
-<div class="subtitle">
-For the nurse who spends her days healing others.
-</div>
+<h1>For my Anuradha</h1>
 
-<div class="countdown">
+<p class="subtitle">
+For the girl whose presence brings calm, warmth, and light into the world. We are lucky to have you.
+</p>
+
+</header>
+
+
+<!-- COUNTDOWN SECTION -->
+<section class="countdown">
 
 <div class="time">
 <span id="days">00</span>
-<div>Days</div>
+<p>Days</p>
 </div>
 
 <div class="time">
 <span id="hours">00</span>
-<div>Hours</div>
+<p>Hours</p>
 </div>
 
 <div class="time">
 <span id="minutes">00</span>
-<div>Minutes</div>
+<p>Minutes</p>
 </div>
 
 <div class="time">
 <span id="seconds">00</span>
-<div>Seconds</div>
+<p>Seconds</p>
 </div>
 
+</section>
+
+
+<!-- BIRTHDAY CAKE -->
+<section id="cake" class="cake">
+
+<div class="cake-base"></div>
+
+<div class="candle">
+
+<div class="flame" id="flame"></div>
+
+<div class="smoke" id="smoke"></div>
+
 </div>
 
-<div class="cake" id="cake">🎂</div>
+</section>
 
-<button class="btn" id="openBtn" onclick="openLetter()" style="display:none;">
-Open Birthday Letter
+
+<!-- BLOW CANDLE BUTTON -->
+<button class="btn" id="openBtn" onclick="openLetter()" style="display:none">
+Blow the Candle
 </button>
 
-<div id="letter"></div>
 
-<div id="admire">
+<!-- ENVELOPE -->
+<section id="envelope" class="envelope">
+
+<div class="flap"></div>
+
+<div class="letter-paper">
+A letter waiting for you…
+</div>
+
+</section>
+
+
+<!-- CHAT STYLE LETTER -->
+<section id="letter" class="chat"></section>
+
+
+<!-- ADMIRATION SECTION -->
+<section id="admire">
 
 <h2 class="admire-title">Why I admire you</h2>
 
 <div class="cards">
 
-<div class="card">Your kindness toward people who need care.</div>
+<div class="card">
+Your kindness toward people who need care.
+</div>
 
-<div class="card">Your strength even on difficult days.</div>
+<div class="card">
+Your strength even on difficult days.
+</div>
 
-<div class="card">Your calm presence in chaotic moments.</div>
+<div class="card">
+Your calm presence in chaotic moments.
+</div>
 
-<div class="card">The genuine heart you carry everywhere.</div>
+<div class="card">
+The butterflies your smile creates.
+</div>
 
+<div class="card">
+The warmth you bring to the people around you.
+</div>
+
+<div class="card">
+The beautiful heart you carry everywhere.
 </div>
 
 </div>
 
+</section>
+
+
+<!-- FINAL MESSAGE -->
+<section id="finalMessage" class="final-message">
+
+<p>
+Thank you for existing in this world, Aaimoni.  
+Your presence makes life softer, brighter, and infinitely more meaningful.
+</p>
+
+</section>
+
 </div>
 
+
+<!-- MUSIC -->
 <audio id="music" loop>
-<source src="music.mp3">
+<source src="music.mp3" type="audio/mpeg">
 </audio>
+
 
 <script src="script.js"></script>
 
